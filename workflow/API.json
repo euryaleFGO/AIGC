@@ -1,0 +1,146 @@
+{
+  "3": {
+    "inputs": {
+      "seed": 306900652989617,
+      "steps": 30,
+      "cfg": 8,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "14",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "waiNSFWIllustrious_v150.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 832,
+      "height": 1216,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "1girl,solo,mm,mature female,red eyes,long hair,blonde hair,piercing,ear piercing,bangs,multicolored hair,black choker,pink nails,anime coloring,school uniform,white shirt,collared shirt,blue necktie,sleeves rolled up,sweater vest,bracelet,pleated skirt,blue skirt,arm behind back,finger gun, aiming,one eye closed, grin,classroom,looking at viewer, aiming at viewer,masterpiece,best quality,amazing quality,<lora:Marin_Kitagawa-Sono_Bisque_Doll_wa_Koi_wo_suru-IL:0.8>",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "bad quality,worst quality,worst detail,sketch,censor,censored,speech bubble,lazyneg",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "13",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "13": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "4",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "设置CLIP最后一层"
+    }
+  },
+  "14": {
+    "inputs": {
+      "lora_name": "Marin_Kitagawa-Sono_Bisque_Doll_wa_Koi_wo_suru-IL.safetensors",
+      "strength_model": 0.8000000000000002,
+      "model": [
+        "4",
+        0
+      ]
+    },
+    "class_type": "LoraLoaderModelOnly",
+    "_meta": {
+      "title": "LoRA加载器（仅模型）"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "20": {
+    "inputs": {
+      "model": "wd-v1-4-convnext-tagger-v2",
+      "threshold": 0.3500000000000001,
+      "character_threshold": 0.7500000000000001,
+      "replace_underscore": true,
+      "trailing_comma": true,
+      "exclude_tags": "white hair",
+      "tags": "1girl, solo, long hair, breasts, looking at viewer, smile, bangs, skirt, brown hair, hair ornament, thighhighs, gloves, dress, bow, very long hair, closed mouth, green eyes, full body, braid, flower, ahoge, hair bow, heart, multicolored hair, hairband, green hair, virtual youtuber, white gloves, hair flower, chibi, white dress, streaked hair, white flower, black background, heart ahoge, green thighhighs, ",
+      "image": [
+        "21",
+        0
+      ]
+    },
+    "class_type": "WD14Tagger|pysssss",
+    "_meta": {
+      "title": "WD14 Tagger 🐍"
+    }
+  },
+  "21": {
+    "inputs": {
+      "image": "a8014c086e061d950a7b8506fbae1dd162d9f2d35cc0.webp"
+    },
+    "class_type": "LoadImage",
+    "_meta": {
+      "title": "加载图像"
+    }
+  },
+  "22": {
+    "inputs": {
+      "action": "append",
+      "tidy_tags": "yes",
+      "text_a": [
+        "20",
+        0
+      ],
+      "text_b": "black hair, white eyes, ",
+      "text_c": "",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "result": "1girl, solo, long hair, breasts, looking at viewer, smile, bangs, skirt, brown hair, hair ornament, thighhighs, gloves, dress, bow, very long hair, closed mouth, green eyes, full body, braid, flower, ahoge, hair bow, heart, multicolored hair, hairband, green hair, virtual youtuber, white gloves, hair flower, chibi, white dress, streaked hair, white flower, black background, heart ahoge, green thighhighs, black hair, white eys,"
+    },
+    "class_type": "StringFunction|pysssss",
+    "_meta": {
+      "title": "String Function 🐍"
+    }
+  },
+  "24": {
+    "inputs": {
+      "ckpt_name": "novaAnimeXL_ilV110.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Checkpoint加载器（简易）"
+    }
+  },
+  "25": {
+    "inputs": {
+      "text": [
+        "22",
+        0
+      ],
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "26": {
+    "inputs": {
+      "text": "bad quality,worst quality,worst detail,",
+      "speak_and_recognation": {
+        "__value__": [
+          false,
+          true
+        ]
+      },
+      "clip": [
+        "30",
+        0
+      ]
+    },
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP文本编码"
+    }
+  },
+  "27": {
+    "inputs": {
+      "samples": [
+        "29",
+        0
+      ],
+      "vae": [
+        "24",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "28": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "保存图像"
+    }
+  },
+  "29": {
+    "inputs": {
+      "seed": 44385337428989,
+      "steps": 30,
+      "cfg": 7,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "karras",
+      "denoise": 1,
+      "model": [
+        "24",
+        0
+      ],
+      "positive": [
+        "25",
+        0
+      ],
+      "negative": [
+        "26",
+        0
+      ],
+      "latent_image": [
+        "31",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "K采样器"
+    }
+  },
+  "30": {
+    "inputs": {
+      "stop_at_clip_layer": -2,
+      "clip": [
+        "24",
+        1
+      ]
+    },
+    "class_type": "CLIPSetLastLayer",
+    "_meta": {
+      "title": "设置CLIP最后一层"
+    }
+  },
+  "31": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "空Latent图像"
+    }
+  }
+}
